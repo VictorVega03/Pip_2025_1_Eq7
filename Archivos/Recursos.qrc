@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="logos">
+    <file>FIT_logo_vertical.png</file>
+    <file>log_uat_nuevo.png</file>
+  </qresource>
+  <qresource prefix="ejercicios">
+    <file>DuckMusic.jpg</file>
+    <file>Guitars.jpg</file>
+    <file>Imagen1.jpg</file>
+    <file>Imagen2.jpg</file>
+    <file>Imagen3.jpg</file>
+    <file>Imagen4.jpg</file>
+    <file>JessePinkman.png</file>
+    <file>john cena.png</file>
+    <file>WaltherWhite.png</file>
+    <file>gatoese.jpg</file>
+    <file>ContornoTD.jpg</file>
+  </qresource>
+</RCC>
