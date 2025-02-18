@@ -4,6 +4,16 @@
     <file>log_uat_nuevo.png</file>
   </qresource>
   <qresource prefix="ejercicios">
+    <file>therockmeme.jpg</file>
+    <file>tuvefe.jpg</file>
+    <file>incorrecto.png</file>
+    <file>marcaverde.png</file>
+    <file>signointerroacion.png</file>
+    <file>bolamarilla.jpg</file>
+    <file>gatoRiendose.png</file>
+    <file>papel.png</file>
+    <file>piedra.png</file>
+    <file>tijera.png</file>
     <file>DuckMusic.jpg</file>
     <file>Guitars.jpg</file>
     <file>Imagen1.jpg</file>
