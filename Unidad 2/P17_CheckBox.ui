@@ -117,37 +117,6 @@
      <string>Pasatiempos:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txt_Mascota">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>400</y>
-      <width>271</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Comic Sans MS</family>
-      <pointsize>22</pointsize>
-      <weight>9</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 4px solid black;
-background-color: rgb(255, 255, 255);
-border-radius: 15px;
-font: 75 22pt &quot;Comic Sans MS&quot;;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
@@ -176,8 +145,8 @@ font: 75 22pt &quot;Comic Sans MS&quot;;</string>
    <widget class="QCheckBox" name="cb_jugar">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>210</y>
+      <x>70</x>
+      <y>200</y>
       <width>151</width>
       <height>20</height>
      </rect>
@@ -192,8 +161,8 @@ font: 75 22pt &quot;Comic Sans MS&quot;;</string>
    <widget class="QCheckBox" name="cb_dormir">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>250</y>
+      <x>70</x>
+      <y>240</y>
       <width>151</width>
       <height>20</height>
      </rect>
@@ -205,11 +174,11 @@ font: 75 22pt &quot;Comic Sans MS&quot;;</string>
      <string>Dormir</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cb_cine">
+   <widget class="QCheckBox" name="cb_salir">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>290</y>
+      <x>70</x>
+      <y>280</y>
       <width>151</width>
       <height>20</height>
      </rect>
@@ -218,14 +187,14 @@ font: 75 22pt &quot;Comic Sans MS&quot;;</string>
      <string notr="true">font: 75 14pt &quot;Comic Sans MS&quot;;</string>
     </property>
     <property name="text">
-     <string>Cine</string>
+     <string>Salir</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="cb_playa">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>200</y>
+      <x>440</x>
+      <y>230</y>
       <width>151</width>
       <height>20</height>
      </rect>
@@ -237,11 +206,11 @@ font: 75 22pt &quot;Comic Sans MS&quot;;</string>
      <string>Playa</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cb_plaza">
+   <widget class="QCheckBox" name="cb_plazas">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>240</y>
+      <x>440</x>
+      <y>260</y>
       <width>151</width>
       <height>20</height>
      </rect>
@@ -250,7 +219,23 @@ font: 75 22pt &quot;Comic Sans MS&quot;;</string>
      <string notr="true">font: 75 14pt &quot;Comic Sans MS&quot;;</string>
     </property>
     <property name="text">
-     <string>Plaza</string>
+     <string>Plazas</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cb_cine">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>200</y>
+      <width>151</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 14pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Cine</string>
     </property>
    </widget>
   </widget>
@@ -260,7 +245,7 @@ font: 75 22pt &quot;Comic Sans MS&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>709</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

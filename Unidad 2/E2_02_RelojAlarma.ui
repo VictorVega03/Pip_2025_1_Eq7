@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>834</width>
-    <height>515</height>
+    <width>976</width>
+    <height>561</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,7 @@
    <widget class="QLabel" name="imagen_2">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>780</x>
       <y>0</y>
       <width>181</width>
       <height>91</height>
@@ -70,8 +70,8 @@
    <widget class="QLabel" name="imagen_3">
     <property name="geometry">
      <rect>
-      <x>740</x>
-      <y>390</y>
+      <x>870</x>
+      <y>430</y>
       <width>91</width>
       <height>91</height>
      </rect>
@@ -92,13 +92,100 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLineEdit" name="txt_horas">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>130</y>
-      <width>141</width>
-      <height>51</height>
+      <x>40</x>
+      <y>210</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>50</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 4px solid black;
+background-color: rgb(255, 255, 255);
+border-radius: 15px;
+font: 75 50pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>00</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_minutos">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>210</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>50</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 4px solid black;
+background-color: rgb(255, 255, 255);
+border-radius: 15px;
+font: 75 50pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>00</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>210</y>
+      <width>16</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>60</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 60pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>160</y>
+      <width>321</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -114,36 +201,151 @@
      <string notr="true">font: 75 22pt &quot;Comic Sans MS&quot;;</string>
     </property>
     <property name="text">
-     <string>Segundos</string>
+     <string>Ingresa la Hora Actual</string>
     </property>
    </widget>
-   <widget class="QLabel" name="imagen_descripcion">
+   <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>140</y>
-      <width>181</width>
-      <height>201</height>
+      <x>160</x>
+      <y>40</y>
+      <width>621</width>
+      <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>22</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">font: 75 22pt &quot;Comic Sans MS&quot;;</string>
     </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="../Archivos/Recursos.qrc">:/ejercicios/DuckMusic.jpg</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>E2 Alarma con Hora Calculada Manualmente</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>140</y>
+      <x>160</x>
+      <y>370</y>
+      <width>16</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>60</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 60pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_horaFinal">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>370</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>50</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 4px solid black;
+background-color: rgb(255, 255, 255);
+border-radius: 15px;
+font: 75 50pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>00</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>320</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>22</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 22pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Hora de la Alarma</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_minutoFinal">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>370</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>50</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 4px solid black;
+background-color: rgb(255, 255, 255);
+border-radius: 15px;
+font: 75 50pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>00</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>160</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -164,42 +366,11 @@
      <string>Hora</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txt_horas">
+   <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>190</y>
-      <width>111</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Comic Sans MS</family>
-      <pointsize>50</pointsize>
-      <weight>9</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 4px solid black;
-background-color: rgb(255, 255, 255);
-border-radius: 15px;
-font: 75 50pt &quot;Comic Sans MS&quot;;</string>
-    </property>
-    <property name="text">
-     <string>00</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>140</y>
+      <x>680</x>
+      <y>160</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -220,13 +391,13 @@ font: 75 50pt &quot;Comic Sans MS&quot;;</string>
      <string>Minutos</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txt_minutos">
+   <widget class="QLineEdit" name="txt_horasR">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>190</y>
+      <x>530</x>
+      <y>210</y>
       <width>111</width>
-      <height>111</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="font">
@@ -251,13 +422,63 @@ font: 75 50pt &quot;Comic Sans MS&quot;;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txt_segundos">
+   <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>190</y>
+      <x>820</x>
+      <y>150</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>22</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 22pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Segundos</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>210</y>
+      <width>16</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>60</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 60pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_minutosR">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>210</y>
       <width>111</width>
-      <height>111</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="font">
@@ -276,16 +497,47 @@ border-radius: 15px;
 font: 75 50pt &quot;Comic Sans MS&quot;;</string>
     </property>
     <property name="text">
-     <string>10</string>
+     <string>00</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLineEdit" name="txt_segundosR">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>830</x>
+      <y>210</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>50</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 4px solid black;
+background-color: rgb(255, 255, 255);
+border-radius: 15px;
+font: 75 50pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>00</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_18">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
       <y>210</y>
       <width>16</width>
       <height>61</height>
@@ -307,51 +559,363 @@ font: 75 50pt &quot;Comic Sans MS&quot;;</string>
      <string>:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>210</y>
-      <width>16</width>
-      <height>61</height>
+      <x>630</x>
+      <y>110</y>
+      <width>241</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Comic Sans MS</family>
-      <pointsize>60</pointsize>
+      <pointsize>22</pointsize>
       <weight>9</weight>
       <italic>false</italic>
       <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 60pt &quot;Comic Sans MS&quot;;</string>
+     <string notr="true">font: 75 22pt &quot;Comic Sans MS&quot;;</string>
     </property>
     <property name="text">
-     <string>:</string>
+     <string>Tiempo Restante</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_temporizar">
+   <widget class="QLineEdit" name="txt_minutos_4">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>370</y>
-      <width>75</width>
-      <height>23</height>
+      <x>10</x>
+      <y>150</y>
+      <width>471</width>
+      <height>321</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>50</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 4px solid black;
+
+border-radius: 15px;
+font: 75 50pt &quot;Comic Sans MS&quot;;</string>
+    </property>
     <property name="text">
-     <string>cosa</string>
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="imagen_4">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>310</y>
+      <width>181</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../Archivos/Recursos.qrc">:/ejercicios/Imagen1.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_aceptar">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>220</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>20</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff5500;&quot;&gt;aserfg&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(99, 135, 255);
+border: 5px solid black;
+border-radius: 15px;
+font: 75 20pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Aceptar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_iniciar">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>390</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>99</red>
+          <green>135</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>20</pointsize>
+      <weight>9</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff5500;&quot;&gt;aserfg&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(99, 135, 255);
+border: 5px solid black;
+border-radius: 15px;
+font: 75 20pt &quot;Comic Sans MS&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Iniciar</string>
+    </property>
+   </widget>
+   <zorder>txt_minutos_4</zorder>
+   <zorder>imagen</zorder>
+   <zorder>imagen_2</zorder>
+   <zorder>imagen_3</zorder>
+   <zorder>txt_horas</zorder>
+   <zorder>txt_minutos</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>label_9</zorder>
+   <zorder>txt_horaFinal</zorder>
+   <zorder>label_12</zorder>
+   <zorder>txt_minutoFinal</zorder>
+   <zorder>label_14</zorder>
+   <zorder>label_15</zorder>
+   <zorder>txt_horasR</zorder>
+   <zorder>label_16</zorder>
+   <zorder>label_17</zorder>
+   <zorder>txt_minutosR</zorder>
+   <zorder>txt_segundosR</zorder>
+   <zorder>label_18</zorder>
+   <zorder>label_8</zorder>
+   <zorder>imagen_4</zorder>
+   <zorder>btn_aceptar</zorder>
+   <zorder>btn_iniciar</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>834</width>
+     <width>976</width>
      <height>21</height>
     </rect>
    </property>

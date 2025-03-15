@@ -1,66 +1,97 @@
 import sys
 from PyQt5 import uic, QtWidgets, QtCore
-from datetime import datetime, timedelta
-
-qtCreatorFile = 'E2_02_RelojAlarma.ui'  # Nombre del archivo aquí.
+qtCreatorFile = "E2_02_RelojAlarma.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
+        QtWidgets.QMainWindow.__init__(self)
+        Ui_MainWindow.__init__(self)
+        self.setupUi(self)
+
+        self.horasR = 0
+        self.minutosR = 0
+        self.segundosR = 0
+        self.horaActual = 0
+        self.minutoActual = 0
+        self.horaAlarma = 0
+        self.minutoAlarma = 0
+
+        # Conexión de botones a sus slots
+        self.btn_aceptar.clicked.connect(self.obtenerHoraActual)
+        self.btn_iniciar.clicked.connect(self.controlAlarmaSegundoPlano)
+
+        # Configuración del temporizador
+        self.alarmaSegundoPlano = QtCore.QTimer()
+        self.alarmaSegundoPlano.timeout.connect(self.tiempoRestanteSegundoPlano)
+
+    # Slot para obtener la hora actual
+    def obtenerHoraActual(self):
         try:
-            QtWidgets.QMainWindow.__init__(self)
-            Ui_MainWindow.__init__(self)
-            self.setupUi(self)
+            self.horaActual = int(self.txt_horas.text())
+            self.minutoActual = int(self.txt_minutos.text())
+            print(f"Hora actual: {self.horaActual}:{self.minutoActual}")
+        except ValueError:
+            QtWidgets.QMessageBox.warning(self, "Error", "Ingresa valores numéricos válidos para la hora actual.")
 
-            # Área de los Signals
-            self.btn_temporizar.clicked.connect(self.temporizar2doPlano)
-            self.segundoPlano = QtCore.QTimer()
-            self.segundoPlano.timeout.connect(self.controlSegundoPlano)
-            self.valorN = -1
-        except Exception as e:
-            print(f"Error during initialization: {e}")
-
-    # Área de los Slots
-    def controlSegundoPlano(self):
+    # Slot para obtener la hora de la alarma
+    def obtenerAlarma(self):
         try:
-            self.txt_temporizador.setText(str(self.valorN))
-            self.valorN -= 1
-            if self.valorN == -1:
-                self.segundoPlano.stop()
-                self.triggerAlarm()
-        except Exception as e:
-            print(f"Error in controlSegundoPlano: {e}")
+            self.horaAlarma = int(self.txt_horaFinal.text())
+            self.minutoAlarma = int(self.txt_minutoFinal.text())
 
-    def temporizar2doPlano(self):
-        try:
-            horas = int(self.txt_horas.text())
-            minutos = int(self.txt_minutos.text())
-            segundos = int(self.txt_segundos.text())
-            target_time = timedelta(hours=horas, minutes=minutos, seconds=seconds)
+            # Cálculo del tiempo restante
+            self.horasR = self.horaAlarma - self.horaActual
+            self.minutosR = self.minutoAlarma - self.minutoActual
 
-            current_time = datetime.now().time()
-            current_time_delta = timedelta(hours=current_time.hour, minutes=current_time.minute, seconds=current_time.second)
+            if self.minutosR < 0:
+                self.minutosR += 60
+                self.horasR -= 1
 
-            time_difference = target_time - current_time_delta
-            if time_difference.total_seconds() < 0:
-                time_difference += timedelta(days=1)  # Adjust for next day
+            if self.horasR < 0:
+                self.horasR += 24
 
-            self.valorN = int(time_difference.total_seconds())
-            self.segundoPlano.start(1000)
-        except Exception as e:
-            print(f"Error in temporizar2doPlano: {e}")
+            self.segundosR = 0  # Reiniciar segundos
 
-    def triggerAlarm(self):
-        try:
-            QtWidgets.QMessageBox.information(self, "Alarma", "¡Es la hora de la alarma!")
-        except Exception as e:
-            print(f"Error in triggerAlarm: {e}")
+            print(f"Alarma establecida: {self.horaAlarma}:{self.minutoAlarma}")
+            print(f"Tiempo restante: {self.horasR} horas, {self.minutosR} minutos, {self.segundosR} segundos")
+        except ValueError:
+            QtWidgets.QMessageBox.warning(self, "Error", "Ingresa valores numéricos válidos para la alarma.")
+
+    # Slot para actualizar el tiempo restante
+    def tiempoRestanteSegundoPlano(self):
+        self.segundosR -= 1
+
+        if self.segundosR < 0:
+            self.segundosR = 59
+            self.minutosR -= 1
+
+        if self.minutosR < 0:
+            self.minutosR = 59
+            self.horasR -= 1
+
+        if self.horasR < 0:
+            self.horasR = 0
+            self.minutosR = 0
+            self.segundosR = 0
+            self.alarmaSegundoPlano.stop()
+            QtWidgets.QMessageBox.information(self, "Alarma", "¡Es hora!")
+            return
+
+        # Actualizar la interfaz
+        self.txt_horasR.setText(str(self.horasR))
+        self.txt_minutosR.setText(str(self.minutosR))
+        self.txt_segundosR.setText(str(self.segundosR))
+
+        print(f"Tiempo restante: {self.horasR} horas, {self.minutosR} minutos, {self.segundosR} segundos")
+
+    # Slot para iniciar la alarma
+    def controlAlarmaSegundoPlano(self):
+        self.obtenerAlarma()
+        self.alarmaSegundoPlano.start(1000)
 
 if __name__ == "__main__":
-    try:
-        app = QtWidgets.QApplication(sys.argv)
-        window = MyApp()
-        window.show()
-        sys.exit(app.exec_())
-    except Exception as e:
-        print(f"Error during execution: {e}")
+    app = QtWidgets.QApplication(sys.argv)
+    window = MyApp()
+    window.show()
+    sys.exit(app.exec_())

@@ -1,6 +1,7 @@
+import time as t
 import sys
-from PyQt5 import uic, QtWidgets
-qtCreatorFile = "P17V_CheckBox.ui"  # Nombre del archivo aquí.
+from PyQt5 import uic, QtWidgets, QtCore
+qtCreatorFile = "P17_CheckBox.ui"  # Nombre del archivo aquí.
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -8,19 +9,18 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
         # Área de los Signals
-        self.cb_dormir.clicked.connect(self.dormir)
-        self.cb_cine.toggled.connect(self.cine)
+        self.cb_dormir.clicked.connect(self.control)
+        self.cb_cine.toggled.connect(self.control)
 
     # Área de los Slots
-    def dormir(self):
-        valor = self.cb_dormir.isChecked()
-        print("Dormir", valor)
-    def cine(self):
-        valor = self.cb_cine.insChecked()
-        print("Cine", valor)
+    def control(self):
+        obj = self.sender()  #.objectName()
+        valor = obj.isChecked()
+        print("Objeto ", obj.text(), ": ", valor)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = MyApp()
     window.show()
     sys.exit(app.exec_())
+

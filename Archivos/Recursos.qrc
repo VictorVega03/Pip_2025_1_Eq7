@@ -4,6 +4,7 @@
     <file>log_uat_nuevo.png</file>
   </qresource>
   <qresource prefix="ejercicios">
+    <file>Imagen1.png</file>
     <file>therockmeme.jpg</file>
     <file>tuvefe.jpg</file>
     <file>incorrecto.png</file>
