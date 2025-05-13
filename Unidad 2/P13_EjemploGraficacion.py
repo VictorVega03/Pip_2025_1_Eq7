@@ -12,6 +12,8 @@ b = 2
 y = [i*m+b for i in x]
 print(y)
 
+# práctica 4....-> Probar otras maneras de personalizar el diseño de las graficas
+# con matplotlib
 plt.plot(x, y, marker="o", color='blue', linestyle='--', linewidth=2, markersize=8, markerfacecolor='green')
 
 # Personalización de la gráfica
@@ -20,6 +22,3 @@ plt.xlabel('Eje X')
 plt.ylabel('Eje Y')
 plt.grid(True)
 plt.show()
-
-# práctica 4....-> Probar otras maneras de personalizar el diseño de las graficas
-# con matplotlib

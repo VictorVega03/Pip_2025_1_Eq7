@@ -4,6 +4,9 @@
     <file>log_uat_nuevo.png</file>
   </qresource>
   <qresource prefix="ejercicios">
+    <file>oCatGame.png</file>
+    <file>xCatGame.png</file>
+    <file>catGameTemplate.png</file>
     <file>Imagen1.png</file>
     <file>therockmeme.jpg</file>
     <file>tuvefe.jpg</file>
