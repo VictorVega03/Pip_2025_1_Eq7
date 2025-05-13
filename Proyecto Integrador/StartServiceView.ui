@@ -151,7 +151,10 @@
     padding: 5px;
 }
 QPushButton:hover {
-    background-color: #7CFC00;
+    background-color: #9ACD32;
+}
+QPushButton:pressed {
+	background-color: rgb(195, 5, 8);
 }</string>
      </property>
      <property name="text">
@@ -204,6 +207,9 @@ QPushButton:hover {
     padding: 5px;
 }
 QPushButton:hover {
+    background-color: #9ACD32;
+}
+QPushButton:pressed {
     background-color: #7CFC00;
 }</string>
      </property>

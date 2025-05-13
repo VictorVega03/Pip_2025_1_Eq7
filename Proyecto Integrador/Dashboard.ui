@@ -527,7 +527,7 @@ por día</string>
      </font>
     </property>
     <property name="text">
-     <string>750 ml</string>
+     <string>750 gr</string>
     </property>
     <property name="readOnly">
      <bool>true</bool>
