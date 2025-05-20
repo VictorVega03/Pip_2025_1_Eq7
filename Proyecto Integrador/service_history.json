@@ -1,0 +1,30 @@
+[
+    {
+        "type": "food",
+        "timestamp": "2025-05-20T07:14:09.151293",
+        "duration": null,
+        "success": true,
+        "device_ip": "192.168.0.211"
+    },
+    {
+        "type": "food",
+        "timestamp": "2025-05-20T07:14:29.467084",
+        "duration": null,
+        "success": true,
+        "device_ip": "192.168.0.211"
+    },
+    {
+        "type": "food",
+        "timestamp": "2025-05-20T07:14:57.524273",
+        "duration": null,
+        "success": true,
+        "device_ip": "192.168.0.211"
+    },
+    {
+        "type": "water",
+        "timestamp": "2025-05-20T08:24:54.908961",
+        "duration": null,
+        "success": true,
+        "device_ip": "192.168.1.101"
+    }
+]

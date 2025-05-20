@@ -135,7 +135,7 @@
      </font>
     </property>
     <property name="text">
-     <string>cantidad restante</string>
+     <string>Cantidad Restante</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditCantidadRestanteAgua">
@@ -176,7 +176,7 @@
      </font>
     </property>
     <property name="text">
-     <string>último servicio</string>
+     <string>Ultimo Servicio</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditUltimoServicioAgua">
@@ -217,7 +217,7 @@
      </font>
     </property>
     <property name="text">
-     <string>fecha de caducidad</string>
+     <string>Fecha De Caducidad</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditFechaCaducidadAgua">
@@ -258,8 +258,8 @@
      </font>
     </property>
     <property name="text">
-     <string>consumo estimado
-por día</string>
+     <string>Consumo Estimado
+Por Día</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditConsumoEstimadoAgua">
@@ -353,7 +353,7 @@ por día</string>
      <rect>
       <x>560</x>
       <y>70</y>
-      <width>100</width>
+      <width>121</width>
       <height>30</height>
      </rect>
     </property>
@@ -383,7 +383,7 @@ por día</string>
      </font>
     </property>
     <property name="text">
-     <string>cantidad restante</string>
+     <string>Cantidad Restante</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditCantidadRestanteAlimento">
@@ -424,7 +424,7 @@ por día</string>
      </font>
     </property>
     <property name="text">
-     <string>último servicio</string>
+     <string>Ultimo Servicio</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditUltimoServicioAlimento">
@@ -455,7 +455,7 @@ por día</string>
      <rect>
       <x>560</x>
       <y>170</y>
-      <width>150</width>
+      <width>161</width>
       <height>20</height>
      </rect>
     </property>
@@ -465,7 +465,7 @@ por día</string>
      </font>
     </property>
     <property name="text">
-     <string>fecha de renovación</string>
+     <string>Fecha de Renovación</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditFechaRenovacionAlimento">
@@ -506,8 +506,8 @@ por día</string>
      </font>
     </property>
     <property name="text">
-     <string>consumo estimado
-por día</string>
+     <string>Consumo Estimado
+Por Día</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditConsumoEstimadoAlimento">
@@ -533,32 +533,12 @@ por día</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="labelGraficaAgua">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>290</y>
-      <width>150</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Grafica para Agua</string>
-    </property>
-   </widget>
    <widget class="QFrame" name="frameGraficaComida">
     <property name="geometry">
      <rect>
       <x>550</x>
       <y>280</y>
-      <width>391</width>
+      <width>481</width>
       <height>311</height>
      </rect>
     </property>
@@ -568,71 +548,33 @@ por día</string>
     <property name="frameShadow">
      <enum>QFrame::Plain</enum>
     </property>
-   </widget>
-   <widget class="QLabel" name="labelGraficaComida">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>290</y>
-      <width>170</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Grafica para Comida</string>
-    </property>
-   </widget>
-   <widget class="QFrame" name="frameBotonesComida">
-    <property name="geometry">
-     <rect>
-      <x>950</x>
-      <y>280</y>
-      <width>101</width>
-      <height>311</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-    <widget class="QLabel" name="labelBotonesComida">
+    <widget class="QLabel" name="labelGraficaComida">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>120</y>
-       <width>80</width>
-       <height>40</height>
+       <x>160</x>
+       <y>100</y>
+       <width>170</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
-      <string>Botones/
-controles</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>Grafica para Comida</string>
      </property>
     </widget>
    </widget>
    <widget class="QPushButton" name="btnDispensador">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>260</x>
       <y>620</y>
-      <width>120</width>
+      <width>131</width>
       <height>40</height>
      </rect>
     </property>
@@ -650,7 +592,7 @@ controles</string>
    <widget class="QPushButton" name="btnHistorial">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>470</x>
       <y>620</y>
       <width>120</width>
       <height>40</height>
@@ -670,9 +612,9 @@ controles</string>
    <widget class="QFrame" name="frameGraficaComida_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>60</x>
       <y>280</y>
-      <width>391</width>
+      <width>461</width>
       <height>311</height>
      </rect>
     </property>
@@ -682,44 +624,46 @@ controles</string>
     <property name="frameShadow">
      <enum>QFrame::Plain</enum>
     </property>
-   </widget>
-   <widget class="QFrame" name="frameBotonesComida_2">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>280</y>
-      <width>101</width>
-      <height>311</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-    <widget class="QLabel" name="labelBotonesComida_2">
+    <widget class="QLabel" name="labelGraficaAgua">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>120</y>
-       <width>80</width>
-       <height>40</height>
+       <x>150</x>
+       <y>100</y>
+       <width>171</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
-      <string>Botones/
-controles</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>Grafica para Agua</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="btnCambiarGrafica">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>620</y>
+      <width>161</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Alternar Grafica</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -728,7 +672,7 @@ controles</string>
      <x>0</x>
      <y>0</y>
      <width>1075</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
