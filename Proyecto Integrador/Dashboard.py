@@ -156,7 +156,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 if hasattr(self, 'statusbar'):
                     self.statusbar.showMessage("Sin conexión con ESP32")
 
-                # Opcional: Mostrar un mensaje (descomentado para que no sea demasiado intrusivo)
                 # QtWidgets.QMessageBox.warning(self, "Advertencia", "No se pudo conectar con el ESP32")
 
     def inicializar_graficas(self):
