@@ -1,8 +1,8 @@
 import sys
 from PyQt5 import uic, QtWidgets
-from PetFeederController import PetFeederController  # Importamos el controlador
+from PetFeederController import PetFeederController
 
-qtCreatorFile = "SetServiceTImeVIew.ui"  # Nombre del archivo UI
+qtCreatorFile = "SetServiceTImeVIew.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 
@@ -12,20 +12,16 @@ class ConfigurarTiempoWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
 
-        # Inicializar el controlador del alimentador
         self.pet_feeder = PetFeederController()
-
         self.tipo_servicio = tipo_servicio
         self.servicio_iniciado = False
 
-        # Actualizar el título según el tipo de servicio
+        # Actualizar título según el tipo de servicio
         if tipo_servicio == "Alimento":
             self.setWindowTitle("Configurar Tiempo de Servicio - Alimento")
-            # Si la ventana tiene un label de título, también lo actualizaríamos aquí
             if hasattr(self, 'labelTitulo'):
                 self.labelTitulo.setText("Configurar Tiempo de Servicio - Alimento")
 
-        # Área de los Signals
         self.btnIniciar.clicked.connect(self.iniciar_detener)
         self.btnGuardar.clicked.connect(self.guardar)
         self.btnVolver.clicked.connect(self.volver)
@@ -40,19 +36,16 @@ class ConfigurarTiempoWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             mensaje.setStandardButtons(QtWidgets.QMessageBox.Ok)
             mensaje.exec_()
 
-    # Área de los Slots
     def iniciar_detener(self):
-        """Inicia o detiene el servicio"""
         if not self.pet_feeder.is_esp32_connected():
             self.mostrar_mensaje_error("No hay conexión con el ESP32")
             return
 
         if not self.servicio_iniciado:
-            # Iniciar servicio
             success = False
             if self.tipo_servicio == "Agua":
                 success = self.pet_feeder.serve_water()
-            else:  # Alimento
+            else:
                 success = self.pet_feeder.serve_food()
 
             if success:
@@ -75,10 +68,6 @@ class ConfigurarTiempoWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 self.mostrar_mensaje_error(f"Error al iniciar el servicio de {self.tipo_servicio}")
         else:
-            # Detener servicio
-            # Nota: En el código ESP32 no hay un comando específico para detener,
-            # pero podríamos implementarlo si es necesario.
-            # Por ahora, simplemente cambiamos el estado en la interfaz.
             self.servicio_iniciado = False
             self.btnIniciar.setText("Iniciar")
             self.btnIniciar.setStyleSheet("""
@@ -98,27 +87,20 @@ class ConfigurarTiempoWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.mostrar_mensaje_info(f"Servicio de {self.tipo_servicio} detenido")
 
     def guardar(self):
-        """Guarda la configuración de tiempo"""
-        # Obtener el tiempo configurado
-        # Aquí asumimos que hay un campo de texto o un spinbox para configurar el tiempo
-        # Debes ajustar esto según tu interfaz UI
         try:
             if hasattr(self, 'spinBoxTiempo'):
-                tiempo_ms = self.spinBoxTiempo.value() * 1000  # Convertir a milisegundos
+                tiempo_ms = self.spinBoxTiempo.value() * 1000
             elif hasattr(self, 'lineEditTiempo'):
                 tiempo_ms = int(self.lineEditTiempo.text()) * 1000
             else:
-                # Si no encontramos el control, usamos un valor predeterminado
-                tiempo_ms = 3000  # 3 segundos por defecto
+                tiempo_ms = 3000
 
-            # Crear configuración para enviar al ESP32
             config = {}
             if self.tipo_servicio == "Agua":
                 config['dur_serv_agua'] = tiempo_ms
-            else:  # Alimento
+            else:
                 config['dur_serv_alim'] = tiempo_ms
 
-            # Enviar configuración al ESP32
             if self.pet_feeder.is_esp32_connected():
                 success = self.pet_feeder.update_esp32_config(config)
                 if success:
@@ -136,7 +118,6 @@ class ConfigurarTiempoWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.close()
 
     def mostrar_mensaje_info(self, mensaje):
-        """Muestra un mensaje de información"""
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setWindowTitle("Información")
@@ -145,7 +126,6 @@ class ConfigurarTiempoWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         msg.exec_()
 
     def mostrar_mensaje_error(self, mensaje):
-        """Muestra un mensaje de error"""
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Critical)
         msg.setWindowTitle("Error")

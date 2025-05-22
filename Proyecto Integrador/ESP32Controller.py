@@ -2,26 +2,13 @@ import requests
 import json
 import time
 import threading
-import serial  # Se mantiene para compatibilidad con modo de respaldo
+import serial
 
 
 class ESP32Controller:
-    """
-    Clase para controlar el ESP32 del alimentador automático de mascotas.
-    Utiliza principalmente conexión WiFi para comunicarse con el dispositivo
-    a través de los endpoints HTTP que expone el ESP32.
-    """
+    """Controlador para comunicación con ESP32 del alimentador de mascotas"""
 
     def __init__(self, ip_address='192.168.0.1', serial_port='COM3', baudrate=115200, timeout=1):
-        """
-        Inicializa la conexión con el ESP32.
-
-        Args:
-            ip_address (str): Dirección IP del ESP32 en la red local
-            serial_port (str): Puerto COM donde está conectado el ESP32 (como respaldo)
-            baudrate (int): Velocidad de comunicación serial (si es necesario)
-            timeout (float): Tiempo de espera para conexiones
-        """
         self.ip_address = ip_address
         self.base_url = f"http://{ip_address}"
         self.serial_port = serial_port
@@ -36,13 +23,10 @@ class ESP32Controller:
         self._monitor_thread = None
 
     def connect(self):
-        """Intenta conectar con el ESP32 vía WiFi y como respaldo serial."""
         print(f"Iniciando conexión con ESP32 en {self.ip_address}...")
 
-        # Primero intentar conexión WiFi
         wifi_success = self._check_wifi_connection()
 
-        # Si la conexión WiFi falla, intentar conexión serial
         serial_success = False
         if not wifi_success:
             print("Conexión WiFi fallida, intentando conexión serial...")
@@ -57,30 +41,25 @@ class ESP32Controller:
         return success
 
     def _check_wifi_connection(self):
-        """Verifica si puede conectarse al ESP32 vía WiFi."""
         from requests.exceptions import RequestException
 
         try:
             print(f"Intentando conexión HTTP a {self.base_url}...")
 
-            # Intentar obtener la página principal (timeout corto)
             try:
                 response = requests.get(f"{self.base_url}/", timeout=3.0)
                 print(f"Respuesta recibida con código: {response.status_code}")
 
                 if response.status_code == 200:
-                    # Comprobar si es realmente el ESP32 que buscamos
                     response_text = response.text.lower()
                     if any(keyword in response_text for keyword in ["alimentador", "mascota", "esp32", "pet feeder"]):
                         self._connected_wifi = True
                         print(f"Conectado vía WiFi a {self.ip_address}. Identificado como ESP32 del alimentador.")
 
-                        # Intentar obtener datos para verificar comunicación completa
                         try:
                             data_response = requests.get(f"{self.base_url}/data", timeout=2.0)
                             if data_response.status_code == 200:
                                 print("Comunicación de datos verificada correctamente")
-                                # Almacenar los datos para su uso posterior
                                 try:
                                     self._last_data = data_response.json()
                                 except json.JSONDecodeError:
@@ -93,8 +72,7 @@ class ESP32Controller:
                         return True
                     else:
                         self._connected_wifi = False
-                        print(
-                            f"El dispositivo en {self.ip_address} respondió, pero no parece ser el ESP32 del alimentador")
+                        print(f"El dispositivo en {self.ip_address} respondió, pero no parece ser el ESP32 del alimentador")
                         print(f"Contenido HTML recibido: {response.text[:100]}...")
                         return False
                 else:
@@ -112,13 +90,11 @@ class ESP32Controller:
             return False
 
     def _connect_serial(self):
-        """Conecta con el ESP32 vía serial (como respaldo)."""
         try:
             self._serial = serial.Serial(self.serial_port, self.baudrate, timeout=self.timeout)
-            time.sleep(2)  # Esperar a que Arduino se reinicie después de la conexión
+            time.sleep(2)
             self._connected_serial = True
 
-            # Iniciar hilo de monitoreo serial
             if not self._running:
                 self._running = True
                 self._monitor_thread = threading.Thread(target=self._monitor_serial)
@@ -133,7 +109,6 @@ class ESP32Controller:
             return False
 
     def disconnect(self):
-        """Desconecta del ESP32."""
         self._running = False
         if self._monitor_thread:
             self._monitor_thread.join(timeout=1.0)
@@ -145,11 +120,8 @@ class ESP32Controller:
         self._connected_serial = False
 
     def is_connected(self):
-        """Retorna True si está conectado al ESP32 por cualquier método."""
-        # Si perdimos la conexión WiFi, intentar reconectar
         if self._connected_wifi:
             try:
-                # Hacer una petición simple para verificar conectividad
                 response = requests.get(f"{self.base_url}/", timeout=1.0)
                 if response.status_code != 200:
                     self._connected_wifi = False
@@ -159,13 +131,11 @@ class ESP32Controller:
         return self._connected_wifi or (self._connected_serial and self._serial and self._serial.is_open)
 
     def _monitor_serial(self):
-        """Hilo que monitorea continuamente los datos enviados por el ESP32."""
         while self._running and self._serial and self._serial.is_open:
             try:
                 if self._serial.in_waiting > 0:
                     line = self._serial.readline().decode('utf-8').strip()
 
-                    # Intentar interpretar como JSON si comienza con '{'
                     if line and line.startswith('{'):
                         try:
                             data = json.loads(line)
@@ -178,15 +148,6 @@ class ESP32Controller:
                 time.sleep(0.1)
 
     def _send_serial_command(self, command):
-        """
-        Envía un comando al ESP32 vía serial.
-
-        Args:
-            command (str): Comando a enviar
-
-        Returns:
-            bool: True si el comando se envió correctamente, False en caso contrario
-        """
         if not self._connected_serial or not self._serial or not self._serial.is_open:
             print("No hay conexión serial")
             return False
@@ -200,87 +161,52 @@ class ESP32Controller:
             print(f"Error al enviar comando serial: {e}")
             return False
 
-    # Métodos para las acciones específicas con preferencia por WiFi
     def serve_food(self):
-        """
-        Activa el dispensador de alimento.
-        Intenta primero por WiFi, luego por serial si es necesario.
-
-        Returns:
-            bool: True si tuvo éxito
-        """
+        """Activa el dispensador de alimento"""
         if self._connected_wifi:
             try:
-                # Endpoint correcto según el código Arduino: "/alimentar"
                 response = requests.post(f"{self.base_url}/alimentar", timeout=5.0)
                 return response.status_code == 200
             except Exception as e:
                 print(f"Error al servir alimento vía WiFi: {e}")
-                # Si WiFi falla, intentar vía serial
 
-        # Método de respaldo: serial
         if self._connected_serial:
             return self._send_serial_command("1")
 
         return False
 
     def serve_water(self):
-        """
-        Activa la válvula de agua.
-        Intenta primero por WiFi, luego por serial si es necesario.
-
-        Returns:
-            bool: True si tuvo éxito
-        """
+        """Activa la válvula de agua"""
         if self._connected_wifi:
             try:
-                # Endpoint correcto según el código Arduino: "/agua"
                 response = requests.post(f"{self.base_url}/agua", timeout=5.0)
                 return response.status_code == 200
             except Exception as e:
                 print(f"Error al servir agua vía WiFi: {e}")
-                # Si WiFi falla, intentar vía serial
 
-        # Método de respaldo: serial
         if self._connected_serial:
             return self._send_serial_command("2")
 
         return False
 
     def reset_water_counter(self):
-        """
-        Reinicia el contador de agua.
-        Intenta primero por WiFi, luego por serial si es necesario.
-
-        Returns:
-            bool: True si tuvo éxito
-        """
+        """Reinicia el contador de agua"""
         if self._connected_wifi:
             try:
-                # Endpoint correcto según el código Arduino: "/reset_agua"
                 response = requests.post(f"{self.base_url}/reset_agua", timeout=5.0)
                 return response.status_code == 200
             except Exception as e:
                 print(f"Error al reiniciar contador vía WiFi: {e}")
-                # Si WiFi falla, intentar vía serial
 
-        # Método de respaldo: serial
         if self._connected_serial:
             return self._send_serial_command("3")
 
         return False
 
     def get_status(self):
-        """
-        Obtiene el estado actual del sistema.
-        Intenta primero por WiFi, luego por serial si es necesario.
-
-        Returns:
-            dict: Estado actual del sistema con los niveles de agua, alimento, etc.
-        """
+        """Obtiene el estado actual del sistema"""
         if self._connected_wifi:
             try:
-                # Endpoint para obtener datos según el Arduino: "/data"
                 response = requests.get(f"{self.base_url}/data", timeout=5.0)
                 if response.status_code == 200:
                     try:
@@ -292,33 +218,22 @@ class ESP32Controller:
                         print("Error al decodificar respuesta JSON")
             except Exception as e:
                 print(f"Error al obtener estado vía WiFi: {e}")
-                # Si WiFi falla, intentar vía serial
 
-        # Método de respaldo: serial
         if self._connected_serial:
             if self._send_serial_command("status"):
-                time.sleep(0.5)  # Dar tiempo para recibir la respuesta
+                time.sleep(0.5)
                 with self._lock:
                     return self._last_data.copy()
 
         return self._last_data.copy() if self._last_data else None
 
     def update_config(self, config_dict):
-        """
-        Actualiza la configuración del ESP32.
-
-        Args:
-            config_dict (dict): Diccionario con los parámetros a actualizar
-
-        Returns:
-            bool: True si tuvo éxito
-        """
+        """Actualiza la configuración del ESP32"""
         if not self._connected_wifi:
             print("No hay conexión WiFi para actualizar configuración")
             return False
 
         try:
-            # Endpoint para actualizar configuración según el Arduino: "/config"
             response = requests.post(
                 f"{self.base_url}/config",
                 json=config_dict,
@@ -331,35 +246,23 @@ class ESP32Controller:
             return False
 
     def scan_network(self, ip_range=None):
-        """
-        Busca el ESP32 en la red local con reporte detallado del progreso.
-
-        Args:
-            ip_range (str, optional): Rango de IPs a escanear. Por defecto usa una subred común.
-
-        Returns:
-            str: IP del ESP32 si se encuentra, None en caso contrario
-        """
+        """Busca el ESP32 en la red local"""
         import socket
         import subprocess
         import platform
 
-        # Para reportar progreso
         print("Iniciando escaneo de red para encontrar ESP32...")
 
-        # Primero, intentar obtener información de la red local
         local_ip = None
         subnet_mask = None
 
         try:
-            # Obtener la IP local usando socket
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            s.connect(("8.8.8.8", 80))  # Conectar a un servidor DNS de Google
+            s.connect(("8.8.8.8", 80))
             local_ip = s.getsockname()[0]
             s.close()
             print(f"IP local detectada: {local_ip}")
 
-            # Intentar obtener la máscara de subred (solo en sistemas basados en Unix)
             if platform.system() != "Windows":
                 try:
                     import netifaces
@@ -375,16 +278,13 @@ class ESP32Controller:
         except Exception as e:
             print(f"Error al obtener la IP local: {e}")
 
-        # Si se proporciona un rango, usarlo
         if ip_range:
             print(f"Usando rango proporcionado: {ip_range}")
         elif local_ip:
-            # Construir un rango basado en la IP local
             base_ip = ".".join(local_ip.split(".")[:3])
             ip_range = f"{base_ip}.1-254"
             print(f"Rango generado automáticamente: {ip_range}")
         else:
-            # Si no se puede determinar, usar rangos comunes
             possible_ranges = [
                 "192.168.0.1-254",
                 "192.168.1.1-254",
@@ -399,24 +299,14 @@ class ESP32Controller:
             print("No se encontró el ESP32 en los rangos comunes.")
             return None
 
-        # Escanear el rango construido
         return self._scan_ip_range(ip_range)
 
     def _scan_ip_range(self, ip_range):
-        """
-        Escanea un rango específico de IPs buscando el ESP32.
-
-        Args:
-            ip_range (str): Rango de IPs a escanear (formato: "192.168.1.1-254")
-
-        Returns:
-            str: IP del ESP32 si se encuentra, None en caso contrario
-        """
+        """Escanea un rango específico de IPs buscando el ESP32"""
         import concurrent.futures
         import time
         from requests.exceptions import RequestException
 
-        # Parsear el rango
         if "-" in ip_range:
             try:
                 base_ip, range_str = ip_range.rsplit(".", 1)
@@ -434,32 +324,26 @@ class ESP32Controller:
 
         print(f"Buscando ESP32 en rango {base_ip}.{start}-{end}...")
 
-        # Función para verificar una IP específica
         def check_ip(ip):
             url = f"http://{ip}/"
             try:
                 response = requests.get(url, timeout=0.5)
                 if response.status_code == 200:
                     response_text = response.text.lower()
-                    # Buscar patrones que indiquen que es el ESP32 del alimentador
                     if any(keyword in response_text for keyword in ["alimentador", "mascota", "esp32", "pet feeder"]):
                         print(f"ESP32 encontrado en {ip}!")
                         return ip
                     else:
                         print(f"Dispositivo encontrado en {ip}, pero no parece ser el ESP32 del alimentador")
             except RequestException:
-                # No hacer nada, es normal que muchas IPs no respondan
                 pass
             except Exception as e:
-                # Solo mostrar errores inesperados
                 print(f"Error inesperado al verificar {ip}: {e}")
             return None
 
-        # Usar ThreadPoolExecutor para escanear en paralelo
         ip_addresses = [f"{base_ip}.{i}" for i in range(start, end + 1)]
         found_ip = None
 
-        # Dividir en bloques más pequeños para reportar progreso
         block_size = 25
         total_blocks = (end - start + 1) // block_size + 1
 
@@ -476,7 +360,6 @@ class ESP32Controller:
                     result = future.result()
                     if result:
                         found_ip = result
-                        # Cancelar el resto de las tareas
                         for f in future_to_ip:
                             f.cancel()
                         break
@@ -484,7 +367,6 @@ class ESP32Controller:
             if found_ip:
                 break
 
-            # Pequeña pausa para no saturar la red
             time.sleep(0.2)
 
         if not found_ip:

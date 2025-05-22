@@ -26,5 +26,26 @@
         "duration": null,
         "success": true,
         "device_ip": "192.168.1.101"
+    },
+    {
+        "type": "food",
+        "timestamp": "2025-05-20T10:24:08.068195",
+        "duration": null,
+        "success": true,
+        "device_ip": "172.20.10.2"
+    },
+    {
+        "type": "food",
+        "timestamp": "2025-05-20T10:51:14.174298",
+        "duration": null,
+        "success": true,
+        "device_ip": "172.20.10.2"
+    },
+    {
+        "type": "food",
+        "timestamp": "2025-05-20T10:51:40.081947",
+        "duration": null,
+        "success": true,
+        "device_ip": "172.20.10.2"
     }
 ]
